@@ -75,6 +75,13 @@ Welcome! This project is a simple, web-based voice-controlled calculator built u
     - Input: "1,000 plus 2,000"
     - Expected: 1000+2000 = 3000
     - Reason: Google adds commas to numbers 1,000 and above, and eval() treats commas as a tuple (1, 2000, 0). Fixed with lower.replace(",", "").
+
+
+11. The "2000" bug
+    - Input: "6 divided by 2000"
+    - Expected: 6/2000 = 0.003
+    - Reason: Worked fine for 3000+, but failed on 2000 because Google got confused by "to"/"too"/"two" and wrote "two thousand" as words. Fixed by adding "two": "2" and "thousand": "000" to OPERATOR_MAP.
+
 ---
 
 ## What I Plan to Add Next
@@ -82,9 +89,3 @@ Welcome! This project is a simple, web-based voice-controlled calculator built u
 - [ ] Calculation history on the page so you can see previous answers
 - [ ] Scientific calculator capabilities
 - [ ] Voice output (Text-to-Speech) so the calculator speaks the answer back
-
-
-11. The "2000" bug
-    - Input: "6 divided by 2000"
-    - Expected: 6/2000 = 0.003
-    - Reason: Worked fine for 3000+, but failed on 2000 because Google got confused by "to"/"too"/"two" and wrote "two thousand" as words. Fixed by adding "two": "2" and "thousand": "000" to OPERATOR_MAP.
